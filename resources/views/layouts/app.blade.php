@@ -19,7 +19,10 @@
     <body class="font-sans bg-gray-200 text-gray-900 text-sm">
         <div class="min-h-screen">
             <header class="flex items-center justify-between px-8 py-4">
-                <img class="h-14" src="{{ asset('img/D-D-Logo.svg') }}" alt="developer svg"> <!-- LOGO -->
+                <div class="flex items-center">
+                    <img class="h-14" src="{{ asset('img/D-D-Logo.svg') }}" alt="developer svg"> <!-- LOGO -->
+                </div>
+                <!-- MENU -->
                 <nav class="hidden md:flex items-center justify-between text-xs  text-gray-500">
                     <ul class="flex uppercase font-semibold space-x-10">
                         <li><a href="/"
@@ -33,15 +36,9 @@
                         <li><a href="#" class=" transition duration-150 ease-in border-b-4 pb-3 text-base hover:border-blue-500">@lang('navbar.contact')</a></li>
                     </ul>
                 </nav>
-                <div class="flex items-center">
-                    @foreach (Config::get('languages') as $lang => $language)
-                        @if ($lang != App::getLocale())
-                        <a href="{{ route('lang.switch', $lang) }}">
-                            <img class="h-8" src="{{ asset('img/' . $lang . '.svg') }}" alt="fr svg">
-                        </a>
-                        @endif
-                    @endforeach
 
+                <!-- Auth -->
+                <div class="flex items-center">
                     @if (Route::has('login'))
                     <div class="top-0 right-0 px-6 py-4">
                         @auth
@@ -62,9 +59,18 @@
                         @endauth
                     </div>
                     @endif
+                    <!-- Language Switch -->
+                    @foreach (Config::get('languages') as $lang => $language)
+                    @if ($lang != App::getLocale())
+                    <a href="{{ route('lang.switch', $lang) }}">
+                        <img class="h-8" src="{{ asset('img/' . $lang . '.svg') }}" alt="fr svg">
+                    </a>
+                    @endif
+                    @endforeach
+                    <!-- User Avatar -->
                     <div>
                         <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
-                            alt="avatar" class="w-10 h-10 rounded-full">
+                            alt="avatar" class="h-14 ml-2 rounded-full">
                     </div>
                 </div>
             </header>
