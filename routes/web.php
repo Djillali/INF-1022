@@ -21,6 +21,8 @@ Route::get('/ideas', function () {
     return view('ideas.index');
 })->name('ideas.index');
 
+Route::view('/ideas/idea', 'ideas.show')->name('ideas.show');
+
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
 
 require __DIR__.'/auth.php';

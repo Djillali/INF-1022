@@ -49,7 +49,7 @@
             </a>
             <div class="mx-4">
                 <h4 class="text-xl font-semibold">
-                    <a href="#" class="hover:underline">A random title can go here</a>
+                    <a href="/ideas/idea" class="hover:underline">A random title can go here</a>
                 </h4>
                 <div class="text-gray-600 mt-3 line-clamp-3">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum minus saepe magni ullam aliquam
@@ -74,7 +74,7 @@
                         <div
                             class="bg-gray-200 text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">@lang('ideas.open')</div>
                         <button
-                            class="relative bg-gray-100 hover:bg-gray-200 rounded-full h-7 transition duration-150 focus:outline-none focus:ring focus:border-blue ease-in py-2 px-3">
+                            class="relative bg-gray-100 hover:bg-gray-200 rounded-full border h-7 transition duration-150 focus:outline-none focus:ring focus:border-blue ease-in py-2 px-3">
                             <svg fill="currentColor" width="24" height="6">
                                 <path
                                     d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z"
