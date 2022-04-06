@@ -3,7 +3,7 @@
         <div class="w-1/12">
         </div>
         <div class="w-3/12 mr-5">
-            <div class="bg-white border-2 border-blue-500 rounded-xl mt-16">
+            <div class="bg-white sticky top-8 border-2 border-blue-500 rounded-xl mt-16">
                 <div class="text-center px-6 py-2 pt-6">
                     <h3 class="font-semibold text-base">@lang('ideas.add_idea')</h3>
                     <p class="text-xs mt-4">@lang('ideas.add_idea_description')</p>

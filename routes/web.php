@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IdeaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,11 +18,8 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-Route::get('/ideas', function () {
-    return view('ideas.index');
-})->name('ideas.index');
-
-Route::view('/ideas/idea', 'ideas.show')->name('ideas.show');
+Route::get('/ideas', [IdeaController::class, 'index'])->name('ideas.index');
+Route::get('/ideas/{idea:slug}', [IdeaController::class, 'show'])->name('ideas.show');
 
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
 
