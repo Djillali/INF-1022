@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Idea;
-use App\Models\IdeaCategory;
-use App\Http\Requests\StoreIdeaRequest;
-use App\Http\Requests\UpdateIdeaRequest;
+use App\Models\IdeaStatus;
+use App\Http\Requests\StoreIdeaStatusRequest;
+use App\Http\Requests\UpdateIdeaStatusRequest;
 
-class IdeaController extends Controller
+class IdeaStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +15,7 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        return view('ideas.index', [
-            'ideas' => Idea::with('user','idea_category')->simplePaginate(10),
-            'categories' => IdeaCategory::all(),
-        ]);
+        //
     }
 
     /**
@@ -35,10 +31,10 @@ class IdeaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreIdeaRequest  $request
+     * @param  \App\Http\Requests\StoreIdeaStatusRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreIdeaRequest $request)
+    public function store(StoreIdeaStatusRequest $request)
     {
         //
     }
@@ -46,23 +42,21 @@ class IdeaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Idea  $idea
+     * @param  \App\Models\IdeaStatus  $ideaStatus
      * @return \Illuminate\Http\Response
      */
-    public function show(Idea $idea)
+    public function show(IdeaStatus $ideaStatus)
     {
-        return view('ideas.show', [
-            'idea' => $idea,
-        ]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Idea  $idea
+     * @param  \App\Models\IdeaStatus  $ideaStatus
      * @return \Illuminate\Http\Response
      */
-    public function edit(Idea $idea)
+    public function edit(IdeaStatus $ideaStatus)
     {
         //
     }
@@ -70,11 +64,11 @@ class IdeaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateIdeaRequest  $request
-     * @param  \App\Models\Idea  $idea
+     * @param  \App\Http\Requests\UpdateIdeaStatusRequest  $request
+     * @param  \App\Models\IdeaStatus  $ideaStatus
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateIdeaRequest $request, Idea $idea)
+    public function update(UpdateIdeaStatusRequest $request, IdeaStatus $ideaStatus)
     {
         //
     }
@@ -82,10 +76,10 @@ class IdeaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Idea  $idea
+     * @param  \App\Models\IdeaStatus  $ideaStatus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Idea $idea)
+    public function destroy(IdeaStatus $ideaStatus)
     {
         //
     }

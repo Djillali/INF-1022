@@ -4,10 +4,10 @@
 <div class="filters flex space-x-6">
     <div class="w-1/3">
         <select name="category" id="category" class="w-full rounded-xl border-none px-4 py-2">
-            <option value="Category1">Category 1</option>
-            <option value="Category2">Category 2</option>
-            <option value="Category3">Category 3</option>
-            <option value="Category4">Category 4</option>
+
+            @foreach ($categories as $category)
+            <option value="{{$category->id}}">{{$category->getCategoryName()}}</option>
+            @endforeach
         </select>
     </div>
     <div class="w-1/3">
@@ -70,14 +70,15 @@
                     <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
                         <div>{{$idea->created_at->diffForHumans()}}</div>
                         <div>&bull;</div>
-                        <div>Category 1</div>
+                        <div>{{$idea->idea_category->getCategoryName()}}</div>
                         <div>&bull;</div>
                         <div class="text-gray-900">3 @lang('buttons.comments')</div>
                     </div>
                     <div    x-data="{ isOpen: false}"
                             class="flex items-center space-x-2">
-                        <div
-                            class="bg-gray-200 text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">@lang('ideas.open')</div>
+                        <div class="{{$idea->idea_status->getStatusClasses()}} text-xs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">
+                            {{$idea->idea_status->getStatusName()}}
+                        </div>
                         <button @click="isOpen = !isOpen"
                             class="relative bg-gray-100 hover:bg-gray-200 rounded-full border h-7 transition duration-150 focus:outline-none focus:ring focus:border-blue ease-in py-2 px-3">
                             <svg fill="currentColor" width="24" height="6">

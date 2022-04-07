@@ -25,4 +25,14 @@ class Idea extends Model
             ]
         ];
     }
+
+    public function idea_category()
+    {
+        return $this->belongsTo(IdeaCategory::class);
+    }
+
+    public function idea_status()
+    {
+        return $this->belongsTo(IdeaStatus::class);
+    }
 }

@@ -17,11 +17,11 @@
                     <div>
                         <select name="category_add" id="category_add"
                             class="w-full text-sm bg-gray-100 rounded-xl placeholder-gray-900 border-none px-4 py-2">
-                            <option value="Category1">Category 1</option>
-                            <option value="Category2">Category 2</option>
-                            <option value="Category3">Category 3</option>
-                            <option value="Category4">Category 4</option>
-                        </select>
+                                <option value="Category1">Category 1</option>
+                                <option value="Category2">Category 2</option>
+                                <option value="Category3">Category 3</option>
+                                <option value="Category4">Category 4</option>
+                         </select>
                     </div>
                     <div>
                         <textarea name="idea" id="idea" cols="30" rows="4"
@@ -51,7 +51,7 @@
                 <ul class="flex uppercase font-semibold border-b-4 pb-3 space-x-10 border-gray-300">
                     <li><a href="#" class="border-b-4 pb-3 border-blue-500 border-gray-300">@lang('ideas.all_ideas') (87)</a></li>
                     <li><a href="#"
-                            class="text-gray-500 transition duration-150 ease-in border-b-4 pb-3 hover:border-blue-500 border-gray-300">@lang('ideas.in_progress') (6)</a></li>
+                            class="text-gray-500 transition duration-150 ease-in border-b-4 pb-3 hover:border-blue-500 border-gray-300">@lang('ideas.pending') (6)</a></li>
                     <li><a href="#"
                             class="text-gray-500 transition duration-150 ease-in border-b-4 pb-3 hover:border-blue-500 border-gray-300">@lang('ideas.considering') (1)</a></li>
                 </ul>
