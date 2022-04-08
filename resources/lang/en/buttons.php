@@ -8,6 +8,7 @@ return [
     'update' => 'Update',
     'attach' => 'Attach',
     'vote' => 'Vote',
+    'voted' => 'Voted',
     'spam' => 'Mark as Spam',
     'delete' => 'Delete Post',
     'comments' => 'Comments',

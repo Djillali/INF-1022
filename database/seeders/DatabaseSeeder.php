@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Idea;
 use App\Models\IdeaStatus;
 use App\Models\IdeaCategory;
+use App\Models\IdeaVote;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -19,6 +20,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        User::factory(49)->create();
+
         User::factory()->create(['name' => 'Djillali', 'email' => 'djillali.dev@gmail.com']);
         User::factory()->create(['name' => 'Djillali2', 'email' => 'djillali.dev2@gmail.com']);
 
@@ -33,6 +36,21 @@ class DatabaseSeeder extends Seeder
         IdeaStatus::factory()->create(['name' => 'Implemented']);
         IdeaStatus::factory()->create(['name' => 'Closed']);
 
-        Idea::factory(30)->create();
+        Idea::factory(100)->create();
+
+        $ideaIds = collect(range(1, 100));
+        $userIds = collect(range(1, 51));
+
+        $possibleVotes = $userIds->crossJoin($ideaIds);
+
+        $votes = $possibleVotes
+        ->random(350)
+            ->map(fn ($item) => [
+                'user_id' => $item[0],
+                'idea_id' => $item[1],
+            ])
+            ->all();
+
+        IdeaVote::factory()->createMany($votes);
     }
 }
