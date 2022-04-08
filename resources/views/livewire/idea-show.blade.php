@@ -28,7 +28,7 @@
                         class="flex items-center space-x-2"
                         x-data="{ isOpen: false }"
                     >
-                        <div class="{{$idea->idea_status->getStatusClasses()}} text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">{{$idea->idea_status->getStatusName()}}</div>
+                        <div class="{{$idea->idea_status->getStatusClasses()}} text-xs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">{{$idea->idea_status->getStatusName()}}</div>
                         <button
                             class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 focus:outline-none focus:ring focus:border-blue-400 transition duration-150 ease-in py-2 px-3"
                             @click="isOpen = !isOpen"
@@ -195,7 +195,7 @@
             <button
                 wire:click.prevent='vote'
                 type="button"
-                class="w-32 h-11 text-xs bg-gray-200 font-semibold uppercase rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring transition duration-150 ease-in px-6 py-3"
+                class="w-32 h-11 text-xs bg-gray-300 font-semibold uppercase rounded-xl border border-gray-200 hover:border-gray-400 focus:outline-none focus:ring transition duration-150 ease-in px-6 py-3"
             >
                 <span>@lang('buttons.vote')</span>
             </button>

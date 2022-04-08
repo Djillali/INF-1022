@@ -8,7 +8,7 @@ return [
     'update' => 'Mettre à jour',
     'attach' => 'Attacher',
     'vote' => 'Voter',
-    'voted' => 'A Voté',
+    'voted' => 'Voté',
     'spam' => 'Signaler un Spam',
     'delete' => 'Supprimer le Post',
     'comments' =>   'Commentaires',

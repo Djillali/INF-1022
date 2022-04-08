@@ -10,7 +10,7 @@ class Idea extends Model
 {
     use HasFactory, Sluggable;
 
-    protected $guarded = [];
+    protected $guarded = [];    
 
     public function user()
     {

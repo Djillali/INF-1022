@@ -17,7 +17,7 @@ class IdeaCard extends Component
         $this->idea = $idea;
         $this->votesCount = $votesCount;
         $this->isIndex = $isIndex;
-        $this->hasVoted = $idea->voted_by_user;
+        $this->hasVoted = $idea->isVotedByUser(auth()->user());
     }
 
     public function vote()

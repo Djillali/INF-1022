@@ -17,18 +17,21 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        return view('ideas.index', [
-            'ideas' => Idea::with('user','idea_category', 'idea_status')
-                ->addSelect([
-                    'voted_by_user' => IdeaVote::select('id')
-                        ->where('user_id', auth()->id())
-                        ->whereColumn('idea_id', 'ideas.id')
-                ])
-                ->withCount('idea_votes')
-                ->orderBy('id', 'desc')
-                ->simplePaginate(10),
-            'categories' => IdeaCategory::all(),
-        ]);
+
+        $ideas = Idea::with('user','idea_category', 'idea_status')
+            ->addSelect([
+                'voted_by_user' => IdeaVote::select('id')
+                    ->where('user_id', auth()->id())
+                    ->whereColumn('idea_id', 'ideas.id')
+            ])
+            ->withCount('idea_votes')
+            ->orderBy('id', 'desc')
+            ->simplePaginate(10);
+
+        $categories = IdeaCategory::all();
+
+        return response(view('ideas.index', compact('ideas','categories')))
+                    ->header('Cache-Control', 'no-cache, no-store, must-revalidate'); //Fixes back button bug after changing vote count
     }
 
     /**

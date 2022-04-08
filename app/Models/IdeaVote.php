@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class IdeaVote extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 }
