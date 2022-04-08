@@ -9,6 +9,7 @@ return [
     'open' => 'Open',
     'add_idea' => 'Add an idea',
     'add_idea_description' => "Let me know what you would like to see implemented!",
+    'add_idea_login' => 'Please login or create an account in order to add an ideas.',
     'title_placeholder' => 'Your idea',
     'description_placeholder' => 'Describe your idea',
     'search' => 'Find an idea',

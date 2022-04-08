@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\Idea;
 use App\Models\IdeaStatus;
 use App\Models\IdeaCategory;
@@ -18,6 +19,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        User::factory()->create(['name' => 'Djillali', 'email' => 'djillali.dev@gmail.com']);
+        User::factory()->create(['name' => 'Djillali2', 'email' => 'djillali.dev2@gmail.com']);
 
         IdeaCategory::factory()->create(['name' => 'Website']);
         IdeaCategory::factory()->create(['name' => 'Ideas']);

@@ -9,6 +9,7 @@ return [
     'open' => 'Ouvert',
     'add_idea' => 'Publier une idée',
     'add_idea_description' => "Laissez-moi savoir ce que vous voudriez voir implémenté",
+    'add_idea_login' => 'Créer un compte afin de pouvoir partager vos idées.',
     'title_placeholder' => 'Vôtre idée',
     'description_placeholder' => 'Décriver votre idée',
     'search' => 'Trouver une idée',

@@ -70,12 +70,11 @@
                     @endforeach
                     <!-- User Avatar -->
                     <div>
-                        @guest
-                        <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
-                            alt="avatar" class="h-14 ml-2 rounded-full">
-                        @endguest
                         @auth
                         <img src="{{ Auth()->User()->getAvatar() }}" alt="avatar" class="h-14 ml-2 rounded-full">
+                        @else
+                        <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+                            alt="avatar" class="h-14 ml-2 rounded-full">
                         @endauth
                     </div>
                 </div>
