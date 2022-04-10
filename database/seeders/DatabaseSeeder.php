@@ -9,6 +9,8 @@ use App\Models\IdeaCategory;
 use App\Models\IdeaVote;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,7 +24,10 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         User::factory(49)->create();
 
-        User::factory()->create(['name' => 'Djillali', 'email' => 'djillali.dev@gmail.com']);
+        $role = Role::create(['name' => 'admin']);
+        $permission = Permission::create(['name' => 'set idea status']);
+        $role->givePermissionTo($permission);
+        User::factory()->create(['name' => 'Djillali', 'email' => 'djillali.dev@gmail.com'])->assignRole('admin');
         User::factory()->create(['name' => 'Djillali2', 'email' => 'djillali.dev2@gmail.com']);
 
         IdeaCategory::factory()->create(['name' => 'Website']);
