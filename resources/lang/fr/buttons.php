@@ -14,5 +14,17 @@ return [
     'comments' =>   'Commentaires',
     'postComment' => 'Poster un commentaire',
     'reply' => 'Répondre',
-    'setStatus' => 'Définir le statut'
+    'all_categories' => 'Toutes les catégories',
+    'setStatus' => 'Définir le statut',
+    'order' => 'Ordonner Par',
+    'order.newest' => 'Plus Récentes',
+    'order.oldest' => 'Plus Anciennes',
+    'order.popular' => 'Plus Populaires',
+    'order.unpopular' => 'Moins Populaires',
+    'filter' => 'Trier Par: ',
+    'filter.all.time' => 'Période: Toutes',
+    'filter.past.day' => 'Dernière 24 heures',
+    'filter.past.week' => 'Dernière semaine',
+    'filter.past.month' => 'Dernier mois'
+
 ];

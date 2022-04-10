@@ -62,4 +62,19 @@ class IdeaStatus extends Model
                 break;
         }
     }
+
+    public static function getCount()
+    {
+        return Idea::query()
+            ->selectRaw("count(*) as all_statuses")
+            ->selectRaw("count(case when idea_status_id = 1 then 1 end) as open")
+            ->selectRaw("count(case when idea_status_id = 2 then 1 end) as considering")
+            ->selectRaw("count(case when idea_status_id = 3 then 1 end) as pending")
+            ->selectRaw("count(case when idea_status_id = 4 then 1 end) as implemented")
+            ->selectRaw("count(case when idea_status_id = 5 then 1 end) as closed")
+            ->first()
+            ->toArray();
+    }
+
+
 }

@@ -17,6 +17,7 @@ return [
     'website' =>'Site Web',
     'music-library' => 'Discothèque',
     'gif-organizer' => 'Gifs',
-    'ideas'=> 'Ideas'
-
+    'ideas'=> 'Idées',
+    'my.ideas' => 'Mes Idées',
+    'voted.for' => 'Idées favorites'
 ];

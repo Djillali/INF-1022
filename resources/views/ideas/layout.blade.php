@@ -37,22 +37,7 @@
             </div>     
         </div>
         <div class="w-7/12">
-            <nav class="flex items-center justify-between text-xs">
-                <ul class="flex uppercase font-semibold border-b-4 pb-3 space-x-10 border-gray-300">
-                    <li><a href="#" class="border-b-4 pb-3 border-blue-500 border-gray-300">@lang('ideas.all_ideas') (87)</a></li>
-                    <li><a href="#"
-                            class="text-gray-500 transition duration-150 ease-in border-b-4 pb-3 hover:border-blue-500 border-gray-300">@lang('ideas.pending') (6)</a></li>
-                    <li><a href="#"
-                            class="text-gray-500 transition duration-150 ease-in border-b-4 pb-3 hover:border-blue-500 border-gray-300">@lang('ideas.considering') (1)</a></li>
-                </ul>
-
-                <ul class="flex uppercase font-semibold border-b-4 pb-3 space-x-10 border-gray-300">
-                    <li><a href="#"
-                            class="text-gray-500 transition duration-150 ease-in border-b-4 pb-3 hover:border-blue-500 border-gray-300">@lang('ideas.implemented')(10)</a></li>
-                    <li><a href="#"
-                            class="text-gray-500 transition duration-150 ease-in border-b-4 pb-3 hover:border-blue-500 border-gray-300">@lang('ideas.closed')(55)</a></li>
-                </ul>
-            </nav>
+            <livewire:ideas-filters />
             <div class="mt-8">
                 @yield('ideas.content') {{-- ideas.index.blade.php --}}
             </div>
