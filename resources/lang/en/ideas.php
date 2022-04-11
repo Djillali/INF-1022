@@ -18,6 +18,6 @@ return [
     'music-library' => 'Music Library',
     'gif-organizer' => 'Gifs',
     'ideas'=> 'Ideas',
-    'ideas.my.ideas' => 'My Ideas',
-    'ideas.voted.for' => 'Ideas I voted for'
+    'my.ideas' => 'My Ideas',
+    'voted.for' => 'Ideas I voted for'
 ];

@@ -44,7 +44,7 @@ class IdeaCategory extends Model
                 break;
             
             default:
-                 return 'No Status';
+                 return 'No Category';
                 break;
         }
     }

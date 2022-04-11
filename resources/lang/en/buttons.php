@@ -11,6 +11,7 @@ return [
     'voted' => 'Voted',
     'spam' => 'Mark as Spam',
     'delete' => 'Delete Post',
+    'edit' => 'Edit Post',
     'comments' => 'Comments',
     'postComment' => 'Post Comment',
     'reply' => 'Reply',

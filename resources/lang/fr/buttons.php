@@ -11,6 +11,7 @@ return [
     'voted' => 'Voté',
     'spam' => 'Signaler un Spam',
     'delete' => 'Supprimer le Post',
+    'edit' => 'Modifier le Post',
     'comments' =>   'Commentaires',
     'postComment' => 'Poster un commentaire',
     'reply' => 'Répondre',

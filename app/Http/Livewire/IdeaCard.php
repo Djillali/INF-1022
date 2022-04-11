@@ -12,7 +12,10 @@ class IdeaCard extends Component
     public $hasVoted;
     public $isIndex;
 
-    protected $listeners = ['statusWasUpdated'];
+    protected $listeners = [
+        'statusWasUpdated' => '$refresh',
+        'ideaWasUpdated' => '$refresh',
+    ];
 
     public function mount(Idea $idea, $votesCount, $isIndex)
     {
@@ -20,11 +23,6 @@ class IdeaCard extends Component
         $this->votesCount = $votesCount;
         $this->isIndex = $isIndex;
         $this->hasVoted = $idea->isVotedByUser(auth()->user());
-    }
-
-    public function statusWasUpdated()
-    {
-        $this->idea->refresh();
     }
 
     public function vote()

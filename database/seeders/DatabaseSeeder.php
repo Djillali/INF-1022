@@ -2,15 +2,15 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use App\Models\Idea;
+use App\Models\User;
+use App\Models\IdeaVote;
 use App\Models\IdeaStatus;
 use App\Models\IdeaCategory;
-use App\Models\IdeaVote;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,15 +21,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        User::factory(49)->create();
-
-        $role = Role::create(['name' => 'admin']);
-        $permission = Permission::create(['name' => 'set idea status']);
-        $role->givePermissionTo($permission);
-        User::factory()->create(['name' => 'Djillali', 'email' => 'djillali.dev@gmail.com'])->assignRole('admin');
-        User::factory()->create(['name' => 'Djillali2', 'email' => 'djillali.dev2@gmail.com']);
-
         IdeaCategory::factory()->create(['name' => 'Website']);
         IdeaCategory::factory()->create(['name' => 'Ideas']);
         IdeaCategory::factory()->create(['name' => 'Gif Organizer']);
@@ -41,21 +32,38 @@ class DatabaseSeeder extends Seeder
         IdeaStatus::factory()->create(['name' => 'Implemented']);
         IdeaStatus::factory()->create(['name' => 'Closed']);
 
-        Idea::factory(100)->create();
+        $role_admin = Role::create(['name' => 'admin']);
+        $permission_set_status = Permission::create(['name' => 'set idea status']);
+        $permission_edit_ideas = Permission::create(['name' => 'edit all ideas']);
+        $permission_delete_ideas = Permission::create(['name' => 'delete all ideas']);
+        $role_admin->givePermissionTo($permission_set_status);
+        $role_admin->givePermissionTo($permission_edit_ideas);
+        $role_admin->givePermissionTo($permission_delete_ideas);
+        User::factory()->create(['name' => 'Djillali', 'email' => 'djillali.dev@gmail.com'])->assignRole('admin');
 
-        $ideaIds = collect(range(1, 100));
-        $userIds = collect(range(1, 51));
+        User::factory()->create(['name' => 'Djillali2', 'email' => 'djillali.dev2@gmail.com']);
 
-        $possibleVotes = $userIds->crossJoin($ideaIds);
+        if ((env('APP_ENV') === 'local')) {
+            User::factory(49)->create();
+            Idea::factory(100)->create();
 
-        $votes = $possibleVotes
-        ->random(350)
+            $ideaIds = collect(range(1, 100));
+            $userIds = collect(range(1, 51));
+
+            $possibleVotes = $userIds->crossJoin($ideaIds);
+
+            $votes = $possibleVotes
+            ->random(350)
             ->map(fn ($item) => [
                 'user_id' => $item[0],
                 'idea_id' => $item[1],
             ])
             ->all();
 
-        IdeaVote::factory()->createMany($votes);
+            IdeaVote::factory()->createMany($votes);
+        }
+
+
+
     }
 }

@@ -12,6 +12,16 @@
 
 <livewire:idea-card :idea='$idea' :votesCount='$votesCount' :isIndex=False />
 
+@can('update', $idea)
+    <livewire:idea-edit :idea='$idea' />
+@endcan
+
+@can('delete', $idea)
+    <livewire:idea-delete :idea='$idea' />
+@endcan
+
+<livewire:idea-spam :idea='$idea' />
+
 <div class="comments-container relative space-y-6 ml-24 pt-4 my-8 mt-1">
     <div class="comment-container relative bg-white rounded-xl flex mt-4">
         <div class="flex flex-1 px-4 py-6">
@@ -43,12 +53,10 @@
                                     d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z"
                                     style="color: rgba(163, 163, 163, .5)">
                             </svg>
-                            <ul
-                                class="hidden absolute w-44 text-left font-semibold bg-white shadow-dialog rounded-xl py-3 ml-8">
-                                <li><a href="#"
-                                        class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">@lang('buttons.spam')</a></li>
-                                <li><a href="#"
-                                        class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">@lang('buttons.delete')</a></li>
+                            <ul class="hidden absolute w-44 text-left font-semibold bg-white shadow-dialog rounded-xl py-3 ml-8">
+                                <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Edit the comment</a></li>
+                                <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">@lang('buttons.spam')</a></li>
+                                <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">@lang('buttons.delete')</a></li>
                             </ul>
                         </button>
                     </div>

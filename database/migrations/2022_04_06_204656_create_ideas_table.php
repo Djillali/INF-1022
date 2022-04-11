@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('idea_status_id')->constrained();
             $table->string('title');
             $table->string('slug')->nullable();
+            $table->integer('spam_reports')->default(0);
             $table->text('description');
             $table->timestamps();
         });

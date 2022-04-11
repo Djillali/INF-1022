@@ -53,7 +53,17 @@ class IdeaPolicy
      */
     public function update(User $user, Idea $idea)
     {
-        //
+        $currentUser = (int) $idea->user_id === (int) $user->id;
+        $hasPermission = $user->hasPermissionTo('edit all ideas');
+        $open = $idea->idea_status->name === 'open';
+        $isAdmin = $user->hasRole('admin');
+
+        if($isAdmin) return true;
+
+        if(($currentUser || $hasPermission) && $open) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -65,7 +75,9 @@ class IdeaPolicy
      */
     public function delete(User $user, Idea $idea)
     {
-        //
+        $isAdmin = $user->hasRole('admin');
+        if ($isAdmin) return true;
+        return false;
     }
 
     /**

@@ -29,11 +29,14 @@
                         x-data="{ isOpen: false }"
                     >
                         <div class="{{$idea->idea_status->getStatusClasses()}} text-xs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">{{$idea->idea_status->getStatusName()}}</div>
-                        <button
-                            class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 focus:outline-none focus:ring focus:border-blue-400 transition duration-150 ease-in py-2 px-3"
-                            @click="isOpen = !isOpen"
-                        >
-                            <svg fill="currentColor" width="24" height="6"><path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)"></svg>
+                        <div class="relative">
+                            @auth
+                            <button
+                                class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 focus:outline-none focus:ring focus:border-blue-400 transition duration-150 ease-in py-2 px-3"
+                                @click="isOpen = !isOpen"
+                            >
+                                <svg fill="currentColor" width="24" height="6"><path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)"></svg>
+                            </button>
                             <ul
                                 class="absolute w-44 text-left font-semibold bg-white shadow-xl rounded-xl py-3 ml-8"
                                 x-cloak
@@ -41,10 +44,51 @@
                                 @click.away="isOpen = false"
                                 @keydown.escape.window="isOpen = false"
                             >
-                                <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">@lang('buttons.spam')</a></li>
-                                <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">@lang('buttons.delete')</a></li>
+                                
+                                <li>
+                                    <a
+                                        href="#"
+                                        @click.prevent="
+                                            isOpen = false
+                                            $dispatch('custom-show-mark-modal')
+                                        "
+                                        class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3"
+                                    >
+                                        @lang('buttons.spam')
+                                    </a>
+                                </li>
+                                @if (auth()->user()->can('update',$idea))
+                                <li>
+                                    <a
+                                        href="#"
+                                        @click.prevent="
+                                            isOpen = false
+                                            $dispatch('custom-show-edit-modal')
+                                        "
+                                        class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3"
+                                    >
+                                        @lang('buttons.edit')
+                                    </a>
+                                </li>
+                                @endif
+
+                                @can('delete', $idea)
+                                    <li>
+                                        <a
+                                            href="#"
+                                            @click.prevent="
+                                                isOpen = false
+                                                $dispatch('custom-show-delete-modal')
+                                            "
+                                            class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3"
+                                        >
+                                            @lang('buttons.delete')
+                                        </a>
+                                    </li>
+                                @endcan                                
                             </ul>
-                        </button>
+                            @endauth
+                        </div>
                     </div>
                 </div>
             </div>
