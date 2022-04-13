@@ -25,7 +25,7 @@ class IdeaSpam extends Component
         $this->idea->save();
 
         $this->emit('ideaWasMarkedAsSpam');
-        return redirect()->route('ideas.index');
+        $this->emit('successNotificationOpen', 'Idea was marked as spam!');
     }
 
     public function render()

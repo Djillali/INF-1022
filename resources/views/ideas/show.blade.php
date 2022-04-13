@@ -12,6 +12,8 @@
 
 <livewire:idea-card :idea='$idea' :votesCount='$votesCount' :isIndex=False />
 
+<x-notification-success />
+
 @can('update', $idea)
     <livewire:idea-edit :idea='$idea' />
 @endcan

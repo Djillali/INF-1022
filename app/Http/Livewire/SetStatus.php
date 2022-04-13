@@ -26,6 +26,7 @@ class SetStatus extends Component
         $this->idea->idea_status_id = $this->status;
         $this->idea->save();
         $this->emit('statusWasUpdated');
+        $this->emit('successNotificationOpen', 'Idea status was updated successfully!');
     }
     public function render()
     {

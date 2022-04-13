@@ -41,6 +41,7 @@ class IdeaEdit extends Component
         $this->idea->description = $this->description;
         $this->idea->save();
         $this->emit('ideaWasUpdated');
+        $this->emit('successNotificationOpen', 'Idea was updated successfully!');
     }
 
 
