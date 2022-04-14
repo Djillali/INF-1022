@@ -89,23 +89,17 @@
             @endif
         </div>
         <livewire:scripts />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@ryangjchandler/spruce@1.1.0/dist/spruce.umd.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js"></script>
         <script>
-            Spruce.store('display', {
-            tab: 0,
-            });
-            const display = (idx) => ({
-            handleClick() {
-                this.$store.display.tab = this.$store.display.tab === idx ? 0 : idx;
-            },
-            handleRotate() {
-                return this.$store.display.tab === idx ? 'rotate-180' : '';
-            },
-            handleToggle() {
-                return this.$store.display.tab === idx ? `max-height: ${this.$refs.tab.scrollHeight}px` : '';
-            }
-            });
+            var clipboard = new ClipboardJS('.btn');
+                clipboard.on('success', function (e) {
+            console.log(e);
+          });
+          clipboard.on('error', function (e) {
+            console.log(e);
+          })
         </script>
     </body>
 </html>

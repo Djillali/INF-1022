@@ -8,6 +8,7 @@ use App\Models\IdeaVote;
 use App\Models\IdeaStatus;
 use App\Models\IdeaCategory;
 use App\Models\Gif;
+use App\Models\Tag;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -64,6 +65,13 @@ class DatabaseSeeder extends Seeder
             IdeaVote::factory()->createMany($votes);
 
             Gif::factory(100)->create();
+            Tag::factory(25)->create();
+
+            $tags = Tag::all();
+            $gifs = Gif::all();
+            foreach ($gifs as $gif) {
+                $gif->tags()->attach(rand(1, 6),);
+            }
         }
     }
 }

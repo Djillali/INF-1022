@@ -2,8 +2,11 @@
     <div>
         <div class="filters flex space-x-6">
             <div class="w-1/4">
-                <select wire:model="category" name="category" id="category" class="w-full rounded-xl border-none px-4 py-2">
+                <select wire:model="tag_id" name="tag_id" id="tag_id" class="w-full rounded-xl border-none px-4 py-2">
                     <option value="all">@lang('buttons.all_categories')</option>
+                    @foreach ($tags as $tag)
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="w-1/4">
@@ -28,7 +31,7 @@
                 @endauth
             </div>
             <div class="w-1/4 relative">
-                <input wire:model="search" type="search" placeholder="Find a gif" class="w-full rounded-xl bg-white border-none placeholder-gray-900 px-4 py-2 pl-8">
+                <input wire:model="search" type="search" placeholder="@lang('gifs.search')" class="w-full rounded-xl bg-white border-none placeholder-gray-900 px-4 py-2 pl-8">
                 <div class="absolute top-0 flex itmes-center h-full ml-2">
                     <svg class="w-4 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -40,46 +43,57 @@
     <div class="container grid grid-cols-4 gap-2 mt-4">
         @foreach ($gifs as $gif)
             <div class="flex flex-col text-center bg-white rounded-lg shadow-lg">
-                <div class="pt-2 pb-2 flex border-b-2 flex justify-center">
-                    <h4 class="ml-2 font-semibold text-gray-600 dark:text-gray-300 ">{{ $gif->title }}</h4>
-                </div>
-
-                <ul class="flex flex-col">
-                    <li class="bg-white my-2" x-data="display({{ $gif->id + 1 }})">
-                    <h2
-                        @click="handleClick()"
-                        class="flex flex-row justify-center items-center font-semibold p-3 cursor-pointer"
-                    >
-                        <span class="text-xs mr-3">Toggle Display</span>
-                        <svg
-                        :class="handleRotate()"
-                        class="fill-current text-blue-700 h-6 w-6 transform transition-transform duration-500"
-                        viewBox="0 0 20 20"
+                <div class="flex justify-between pt-2 pb-2 flex border-b-2 ">
+                    <h4 class="ml-4 font-semibold text-gray-600 dark:text-gray-300 ">{{ $gif->title }}</h4>
+                    <div class="mr-4 cursor-pointer">
+                        <span
+                            class="flex h-min w-min space-x-1 items-center rounded-full text-gray-700 hover:text-blue-700 bg-gray-300  py-1 px-2 text-xs font-medium"
                         >
-                        <path d="M13.962,8.885l-3.736,3.739c-0.086,0.086-0.201,0.13-0.314,0.13S9.686,12.71,9.6,12.624l-3.562-3.56C5.863,8.892,5.863,8.611,6.036,8.438c0.175-0.173,0.454-0.173,0.626,0l3.25,3.247l3.426-3.424c0.173-0.172,0.451-0.172,0.624,0C14.137,8.434,14.137,8.712,13.962,8.885 M18.406,10c0,4.644-3.763,8.406-8.406,8.406S1.594,14.644,1.594,10S5.356,1.594,10,1.594S18.406,5.356,18.406,10 M17.521,10c0-4.148-3.373-7.521-7.521-7.521c-4.148,0-7.521,3.374-7.521,7.521c0,4.147,3.374,7.521,7.521,7.521C14.148,17.521,17.521,14.147,17.521,10"></path>
-                        </svg>
-                    </h2>
-                    <div
-                        x-ref="tab"
-                        :style="handleToggle()"
-                        class="border-l-2 border-blue-600 overflow-hidden max-h-0 duration-500 transition-all"
-                    >
-                        <p class="p-3 text-gray-900">
-                        <img
-                            class="object-contain w-full"
-                            src="{{ $gif->path }}"
-                        >
-                        </p>
+                            <svg
+                            class="h-5 w-5 fill-current "
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                            />
+                            </svg>
+                            <p class="font-bold text-sm">
+                            3
+                            </p>
+                        </span>
                     </div>
-                    </li>
-                </ul>
 
-                <div class='my-3 flex flex-wrap justify-center -m-1'>
-                    <span class="m-1 bg-gray-200 hover:bg-gray-300 rounded-full px-2 font-bold text-sm leading-loose cursor-pointer">winter</span>
-                    <span class="m-1 bg-gray-200 hover:bg-gray-300 rounded-full px-2 font-bold text-sm leading-loose cursor-pointer">stark</span>
-                    <span class="m-1 bg-gray-200 hover:bg-gray-300 rounded-full px-2 font-bold text-sm leading-loose cursor-pointer">battle</span>
-                    <span class="m-1 bg-gray-200 hover:bg-gray-300 rounded-full px-2 font-bold text-sm leading-loose cursor-pointer">gameofthrones</span>
-                    <span class="m-1 bg-gray-200 hover:bg-gray-300 rounded-full px-2 font-bold text-sm leading-loose cursor-pointer">jhonsnow</span>
+                </div>
+                <div class="flex justify-center">
+                    <img
+                        class="object-contain w-48 text-center rounded-xl"
+                        src="{{ $gif->path }}"
+                    >
+                </div>
+                <span class="flex justify-between bg-gray-100">
+                    <input type="text" id="path{{ $gif->id }}" class="btn w-full text-xs bg-gray-100 focus:outline-none border-none placeholder-gray-900 px-4 py-2" data-clipboard-target="#path{{ $gif->id }}" value="{{ $gif->path }}" readonly="readonly">
+                    <button class="btn" data-clipboard-target="#path{{ $gif->id }}">
+                        <svg class="h-7 w-7 bg-gray-100 border-none focus:outline-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                        </svg>
+                    </button>
+                    </span>
+
+                <div class='my-3 flex flex-wrap justify-center m-1'>
+                    @foreach ($gif->tags as $tag)
+                    <span wire:click="tagChange({{$tag->id}})" class="m-1 bg-gray-200 hover:bg-gray-300 rounded-full px-2 font-bold text-sm leading-loose cursor-pointer">{{ $tag->name }}</span>
+                    @endforeach
+                </div>
+                <div class="flex justify-center mt-2 mb-2">
+                    <div class="flex text-xs text-gray-400 font-semibold space-x-2 ml-2">
+                        <div class="font-bold text-gray-900">Saved by: {{$gif->user->name}}</div>
+                        <div>{{$gif->created_at->diffForHumans()}}</div>
+                    </div>
                 </div>
             </div>
         @endforeach
