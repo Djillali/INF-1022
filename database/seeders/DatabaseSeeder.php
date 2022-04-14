@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\IdeaVote;
 use App\Models\IdeaStatus;
 use App\Models\IdeaCategory;
+use App\Models\Gif;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -61,9 +62,8 @@ class DatabaseSeeder extends Seeder
             ->all();
 
             IdeaVote::factory()->createMany($votes);
+
+            Gif::factory(100)->create();
         }
-
-
-
     }
 }

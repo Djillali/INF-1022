@@ -29,10 +29,8 @@
                         <li><a href="/"
                                 class="transition duration-150 ease-in border-b-4 pb-3 text-base  hover:border-blue-500 @if(Route::is('index')) text-gray-900 border-blue-500 @endif">@lang('navbar.home')</a>
                         </li>
-                        <li><a href="/ideas"
-                                class=" transition duration-150 ease-in border-b-4 pb-3 text-base hover:border-blue-500 @if(Route::is('ideas.index')) text-gray-900 border-blue-500 @endif">@lang('navbar.ideas')</a>
-                        </li>
-                        <li><a href="#" class=" transition duration-150 ease-in border-b-4 pb-3 text-base hover:border-blue-500">@lang('navbar.gifs')</a></li>
+                        <li><a href="/ideas" class=" transition duration-150 ease-in border-b-4 pb-3 text-base hover:border-blue-500 @if(Str::contains(Route::currentRouteName(), 'ideas')) text-gray-900 border-blue-500 @endif">Ideas</a></li>
+                        <li><a href="/gifs" class=" transition duration-150 ease-in border-b-4 pb-3 text-base hover:border-blue-500 @if(Str::contains(Route::currentRouteName(), 'gifs')) text-gray-900 border-blue-500 @endif"">Gif Organizer</a></li>
                         <li><a href="#" class=" transition duration-150 ease-in border-b-4 pb-3 text-base hover:border-blue-500">@lang('navbar.albums')</a></li>
                         <li><a href="#" class=" transition duration-150 ease-in border-b-4 pb-3 text-base hover:border-blue-500">@lang('navbar.contact')</a></li>
                     </ul>
@@ -91,5 +89,23 @@
             @endif
         </div>
         <livewire:scripts />
+        <script src="https://cdn.jsdelivr.net/npm/@ryangjchandler/spruce@1.1.0/dist/spruce.umd.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js"></script>
+        <script>
+            Spruce.store('display', {
+            tab: 0,
+            });
+            const display = (idx) => ({
+            handleClick() {
+                this.$store.display.tab = this.$store.display.tab === idx ? 0 : idx;
+            },
+            handleRotate() {
+                return this.$store.display.tab === idx ? 'rotate-180' : '';
+            },
+            handleToggle() {
+                return this.$store.display.tab === idx ? `max-height: ${this.$refs.tab.scrollHeight}px` : '';
+            }
+            });
+        </script>
     </body>
 </html>

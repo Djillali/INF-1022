@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IdeaController;
+use App\Http\Controllers\GifController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,8 @@ Route::get('/', function () {
 
 Route::get('/ideas', [IdeaController::class, 'index'])->name('ideas.index');
 Route::get('/ideas/{idea:slug}', [IdeaController::class, 'show'])->name('ideas.show');
+
+Route::get('/gifs', [GifController::class, 'index'])->name('gifs.index');
 
 Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
 

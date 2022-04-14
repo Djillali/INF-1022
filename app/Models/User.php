@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->belongsToMany(IdeaVotes::class,'idea_votes');
     }
 
+    public function gifs()
+    {
+        return $this->hasMany(Gif::class);
+    }
+
     public function getAvatar()
     {
         $firstCharacter = $this->email[0];
