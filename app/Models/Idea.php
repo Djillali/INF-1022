@@ -41,6 +41,11 @@ class Idea extends Model
         return $this->belongsToMany(User::class, 'idea_votes');
     }
 
+    public function comments()
+    {
+        return $this->hasMany(IdeaComment::class);
+    }
+
     public function isVotedByUser(?User $user)
     {
         if (!$user) {

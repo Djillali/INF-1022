@@ -73,7 +73,7 @@ class IdeasIndex extends Component
     public function render()
     {
         return view('livewire.ideas-index', [
-        'ideas' => Idea::with('user', 'idea_category', 'idea_status')
+        'ideas' => Idea::with('user', 'idea_category', 'idea_status','comments')
             ->join('idea_statuses', 'idea_statuses.id','=','ideas.idea_status_id')
             ->join('idea_categories', 'idea_categories.id','=','ideas.idea_category_id')
             ->join('users', 'users.id','=','ideas.user_id')
@@ -92,6 +92,7 @@ class IdeasIndex extends Component
                         ->whereColumn('idea_id', 'ideas.id')
                     ])
                 ->withCount('idea_votes')
+                ->withCount('comments')
                 ->when($this->order && $this->order === 'new', function ($query) {
                     $query->orderBy('ideas.id', 'desc');
                 })
@@ -103,6 +104,9 @@ class IdeasIndex extends Component
                 })
                 ->when($this->order && $this->order === 'less', function ($query) {
                     $query->orderBy('idea_votes_count', 'asc');
+                })
+                ->when($this->order && $this->order === 'com', function ($query) {
+                    $query->orderBy('comments_count', 'desc');
                 })
                 ->when(auth()->check() && $this->filter && $this->filter === 'user', function ($query) {  // current user
                     $query->where('users.id', auth()->id());

@@ -5,7 +5,8 @@
                 <select  wire:model="order" name="order" id="order" class="w-full rounded-xl border-none px-4 py-2">
                     <option value="new">@lang('buttons.order')</option>
                     <option value="new">@lang('buttons.order.newest')</option>
-                    <option value="old">@lang('buttons.order.oldest')</option>     
+                    <option value="old">@lang('buttons.order.oldest')</option>
+                    <option value="com">@lang('buttons.order.comments')</option>
                     <option value="most">@lang('buttons.order.popular')</option>
                     <option value="less">@lang('buttons.order.unpopular')</option>
                     @role('admin')
@@ -60,7 +61,7 @@
 
     <div class="ideas-container space-y-6 my-6">
         @forelse ($ideas as $idea)
-            <livewire:idea-card :key="$idea->id" :idea="$idea" :votesCount="$idea->idea_votes_count" :isIndex=True />
+            <livewire:idea-card :key="$idea->id" :idea="$idea" :votesCount="$idea->idea_votes_count" :isIndex=True :comments_count="$idea->comments_count" />
         @empty
             <div class="mx-auto w-70 mt-12">
                 <img src="{{ asset('img/no-results.svg') }}" alt="No Ideas" class="mx-auto mix-blend-luminosity">

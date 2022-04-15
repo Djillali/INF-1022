@@ -20,6 +20,7 @@ return [
     'order' => 'Ordonner Par',
     'order.newest' => 'Plus Récentes',
     'order.oldest' => 'Plus Anciennes',
+    'order.comments' => 'Plus Commentés',
     'order.popular' => 'Plus Populaires',
     'order.unpopular' => 'Moins Populaires',
     'filter' => 'Trier Par: ',

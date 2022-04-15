@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->belongsToMany(IdeaVotes::class,'idea_votes');
     }
 
+    public function idea_comments()
+    {
+        return $this->hasMany(IdeaComment::class);
+    }
+
     public function gifs()
     {
         return $this->hasMany(Gif::class);

@@ -22,7 +22,7 @@
                         <div>&bull;</div>
                         <div>{{$idea->idea_category->getCategoryName()}}</div>
                         <div>&bull;</div>
-                        <div class="text-gray-900">3 @lang('buttons.comments')</div>
+                        <div class="text-gray-900">{{$idea->comments->count()}} @lang('buttons.comments')</div>
                     </div>
                     <div
                         class="flex items-center space-x-2"

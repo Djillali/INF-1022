@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Idea;
 use App\Models\IdeaVote;
+use App\Models\IdeaComment;
 use Illuminate\Http\Response;
 use Livewire\Component;
 
@@ -23,6 +24,7 @@ class IdeaDelete extends Component
         }
 
         IdeaVote::where('idea_id', $this->idea->id)->delete();
+        IdeaComment::where('idea_id', $this->idea->id)->delete();
 
         Idea::destroy($this->idea->id);
         

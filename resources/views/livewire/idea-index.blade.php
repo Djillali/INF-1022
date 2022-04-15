@@ -48,7 +48,7 @@
                     <div>&bull;</div>
                     <div>{{$idea->idea_category->getCategoryName()}}</div>
                     <div>&bull;</div>
-                    <div class="text-gray-900">3 @lang('buttons.comments')</div>
+                    <div class="text-gray-900">{{ $idea->comments_count }} @lang('buttons.comments')</div>
                     @role('admin')
                         @if($idea->spam_reports > 0)
                             <div class="text-red-600">Spam Reports: {{ $idea->spam_reports }}</div>

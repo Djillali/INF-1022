@@ -20,6 +20,7 @@ return [
     'order' => 'Order By:',
     'order.newest' => 'Newest',
     'order.oldest' => 'Oldest',
+    'order.comments' => 'Most Commented',
     'order.popular' => 'Most Voted',
     'order.unpopular' => 'Least Voted',
     'filter' => 'Filter By:',

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\IdeaVote;
 use App\Models\IdeaStatus;
 use App\Models\IdeaCategory;
+use App\Models\IdeaComment;
 use App\Models\Gif;
 use App\Models\Tag;
 use Illuminate\Database\Seeder;
@@ -63,6 +64,10 @@ class DatabaseSeeder extends Seeder
             ->all();
 
             IdeaVote::factory()->createMany($votes);
+
+            foreach (Idea::all() as $idea) {
+                IdeaComment::factory(rand(0, 6))->existing()->create(['idea_id' => $idea->id]);
+            }
 
             Gif::factory(100)->create();
             Tag::factory(25)->create();
