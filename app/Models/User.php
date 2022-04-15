@@ -63,6 +63,11 @@ class User extends Authenticatable
         return $this->hasMany(Gif::class);
     }
 
+    public function albums()
+    {
+        return $this->hasMany(Album::class);
+    }
+
     public function getAvatar()
     {
         $firstCharacter = $this->email[0];

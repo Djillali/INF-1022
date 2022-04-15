@@ -10,6 +10,7 @@ use App\Models\IdeaCategory;
 use App\Models\IdeaComment;
 use App\Models\Gif;
 use App\Models\Tag;
+use App\Models\Album;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -77,6 +78,8 @@ class DatabaseSeeder extends Seeder
             foreach ($gifs as $gif) {
                 $gif->tags()->attach(rand(1, 6),);
             }
+
+            Album::factory(200)->create();
         }
     }
 }
