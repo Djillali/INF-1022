@@ -51,21 +51,36 @@
             </div>
             <div class="mt-1">
                 <div class="flex items-center text-xs space-x-2 mb-1">
-                    <div><span class="font-semibold text-gray-400">Number of Tracks</span> 24</div>
+                    <div><span class="font-semibold text-gray-400">Number of Tracks</span> {{ $album->tracks_count }}</div>
+                </div>
+                <div class="flex items-center text-xs space-x-2 mb-1 line-clamp-2">
+                    <div><span class="font-semibold text-gray-400">Main Performers</span>
+                        @foreach ($album->main_performers() as $performer)
+                            <span>{{$performer}}</span>
+                            @if( $album->main_performers()->last() !== $performer)
+                                <span class="text-gray-400">&bull;</span>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+                <div class="flex  items-center text-xs space-x-2 mb-1 line-clamp-2">
+                    <div><span class="font-semibold text-gray-400">Featuring</span>
+                        @foreach ($album->feat_performers() as $performer)
+                                <span>{{$performer}}</span>
+                            @if( $album->feat_performers()->last() !== $performer)
+                                <span class="text-gray-400">&bull;</span>
+                            @endif
+                        @endforeach
+                    </div>
                 </div>
                 <div class="flex items-center text-xs space-x-2 mb-1">
-                    <div><span class="font-semibold text-gray-400">Main Performers</span> Artist2 &bull; Artist3</div>
-                </div>
-                <div class="flex items-center text-xs space-x-2 mb-1">
-                    <div><span class="font-semibold text-gray-400">Featuring</span> Artist2 &bull; Artist3</div>
-                </div>
-                <div class="flex items-center text-xs space-x-2 mb-1">
-                    <p class="font-semibold text-gray-400">Styles</p>
-                    <p>Genre 1</p>
-                    <p>&bull;</p>
-                    <p>Genre 2</p>
-                    <p>&bull;</p>
-                    <p>Genre 3</p>
+                    <span class="font-semibold text-gray-400">Styles</span>
+                    @foreach ($album->genres as $genre)
+                        <span>{{$genre->name}}</span>
+                        @if( $album->genres->last() !== $genre)
+                            <span class="text-gray-400">&bull;</span>
+                        @endif
+                    @endforeach
                 </div>
                 <div class="text-gray-600 mt-1 line-clamp-2 mb-1">
                     {{$album->description}}

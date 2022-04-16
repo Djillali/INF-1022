@@ -8,10 +8,9 @@
             </div>
             <div class="w-1/4">
                 <select  wire:model="order" name="order" id="order" class="w-full rounded-xl border-none px-4 py-2">
-                    <option value="new">Order by: Newest</option>
-                    <option value="old">Order by: Oldest</option>
-                    <option value="most">Order by: Most Voted</option>
-                    <option value="less">Order by: Least Voted</option>
+                    <option value="new">Order by: Date Added</option>
+                    <option value="release">Order by: Date Released</option>
+                    <option value="most">Order by: Likes</option>
                     @role('admin')
                         <option value="spam">Spam Reports</option>
                     @endrole

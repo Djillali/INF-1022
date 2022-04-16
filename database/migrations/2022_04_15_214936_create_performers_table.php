@@ -13,15 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ideas', function (Blueprint $table) {
+        Schema::create('performers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('idea_category_id')->constrained();
-            $table->foreignId('idea_status_id')->constrained();
-            $table->string('title');
-            $table->string('slug');
-            $table->integer('spam_reports')->default(0);
-            $table->text('description');
+            $table->foreignId('track_id')->constrained();
+            $table->foreignId('artist_id')->constrained();
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ideas');
+        Schema::dropIfExists('performers');
     }
 };

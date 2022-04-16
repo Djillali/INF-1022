@@ -11,6 +11,10 @@ use App\Models\IdeaComment;
 use App\Models\Gif;
 use App\Models\Tag;
 use App\Models\Album;
+use App\Models\Artist;
+use App\Models\Track;
+use App\Models\Performer;
+use App\Models\Genre;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -79,7 +83,40 @@ class DatabaseSeeder extends Seeder
                 $gif->tags()->attach(rand(1, 6),);
             }
 
-            Album::factory(200)->create();
+            Album::factory(50)->create();
+            Artist::factory(50)->create();
+            foreach (Album::all() as $album) {
+                Track::factory(rand(5, 24))->existing()->create(['album_id' => $album->id]);
+            }
+
+            Genre::factory()->create(['name' => 'Reggae']);
+            Genre::factory()->create(['name' => 'Dancehall']);
+            Genre::factory()->create(['name' => 'Hip-Hop']);
+            Genre::factory()->create(['name' => 'Rock']);
+            Genre::factory()->create(['name' => 'Folk']);
+            Genre::factory()->create(['name' => 'World-Music']);
+            Genre::factory()->create(['name' => 'Folk-Rock']);
+            Genre::factory()->create(['name' => 'Indie-Rock']);
+            Genre::factory()->create(['name' => 'Metal']);
+            Genre::factory()->create(['name' => 'Punk']);
+            Genre::factory()->create(['name' => 'Electronic']);
+            Genre::factory()->create(['name' => 'Country']);
+            Genre::factory()->create(['name' => 'Post-Rock']);
+            Genre::factory()->create(['name' => 'Industrial']);
+            Genre::factory()->create(['name' => 'Classical']);
+
+
+
+            foreach (Album::all() as $album) {
+                $roles = Genre::find([rand(1, 7), rand(8, 15)]);
+                $album->genres()->attach($roles);
+                $album->save();
+                $artist_id = rand(1, 50);
+                foreach ($album->tracks as $track) {
+                    Performer::factory()->existing()->create(['track_id' => $track->id, 'artist_id' => $artist_id, 'type' => 'Main']);
+                    Performer::factory(rand(0, 2))->existing()->create(['track_id' => $track->id, 'type' => 'Feat']);
+            }
+        }
         }
     }
 }

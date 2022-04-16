@@ -37,34 +37,37 @@
                         </span>
                     </div>
                 </div>
-                <div class="flex justify-center text-sm space-x-2 mb-3">
-                    <p class="font-semibold text-gray-400">Main Performers</p>
-                    <p>Artist 1</p>
-                    <p class="text-gray-400">&bull;</p>
-                    <p>Artist 2</p>
-                    <p class="text-gray-400">&bull;</p>
-                    <p>Artist 3</p>
+                <div class="flex flex-wrap justify-center text-sm space-x-2 mb-3">
+                    <p class="font-semibold text-gray-400">Main Performer</p>
+                    @foreach ($album->main_performers() as $performer)
+                        <p>{{$performer}}</p>
+                        @if( $album->main_performers()->last() !== $performer)
+                           <p class="text-gray-400">&bull;</p>
+                        @endif
+                    @endforeach
                 </div>
-                <div class="flex justify-center text-sm space-x-2 mb-3">
+                <div class="flex flex-wrap justify-center text-sm space-x-2 mb-3">
                     <p class="font-semibold text-gray-400">Featuring</p>
-                    <p>Artist 1</p>
-                    <p class="text-gray-400">&bull;</p>
-                    <p>Artist 2</p>
-                    <p class="text-gray-400">&bull;</p>
-                    <p>Artist 3</p>
+                    @foreach ($album->feat_performers() as $performer)
+                        <p>{{$performer}}</p>
+                        @if( $album->feat_performers()->last() !== $performer)
+                           <p class="text-gray-400">&bull;</p>
+                        @endif
+                    @endforeach
                 </div>
                 <div class="flex justify-center text-sm space-x-2 mb-3">
                     <p class="font-semibold text-gray-400">Styles</p>
-                    <p>Genre 1</p>
-                    <p class="text-gray-400">&bull;</p>
-                    <p>Genre 2</p>
-                    <p class="text-gray-400">&bull;</p>
-                    <p>Genre 3</p>
+                    @foreach ($album->genres as $genre)
+                        <p>{{$genre->name}}</p>
+                        @if( $album->genres->last() !== $genre)
+                           <p class="text-gray-400">&bull;</p>
+                        @endif
+                    @endforeach
                 </div>
                 <div class="flex justify-center text-sm space-x-2 mb-3 min-w-full">
                     <div>
                         <span class="font-semibold text-gray-400">Album Length</span> 72 minutes
-                        <span class="font-semibold text-gray-400">&bull; Number of Tracks</span> 24
+                        <span class="font-semibold text-gray-400">&bull; Number of Tracks</span> {{ $album->tracks()->count() }}
                     </div>
                 </div>
                 <div class="text-gray-600 mb-3" style="min-height: 115px;">
@@ -100,38 +103,41 @@
     </div>
 </div> <!-- end album-container -->
 <div class="album-details-container flex space-x-4">
-    <div class="tracklist-container flex flex-col w-4/12 bg-white rounded-xl cursor-pointer pt-2 mt-4 px-4">
-        <div class="font-semibold text-gray-400 ml-4">
+    <div class="tracklist-container flex flex-col w-7/12 bg-white rounded-xl cursor-pointer pt-2 mt-4 px-4">
+        <div class="font-semibold text-gray-400">
             <p >Tracklist</p>
         </div>
         <div>
-            <table class="table-fixed">
-                <thead>
-                    <tr class="text-gray-400 ">
-                    <th class="w-1/8 font-semibold">#</th>
-                    <th class="w-full font-semibold">Title</th>
-                    <th class="w-1/4 font-semibold">Lenght</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @for ($i = 1; $i < 25; $i++)
-                        <tr class="border-b-2">
-                        <td>{{ $i }}</td>
-                        <td class="text-center">Track number #{{ $i }}</td>
-                        <td>(04:20)</td>
-                        </tr>
-                    @endfor
-                </tbody>
-            </table>
-            <div class="flex justify-between text-sm  font-semibold space-x-2 mb-3">
-                    <div class="text-gray-400">Total tracks:</div>24
-                    <div class="text-gray-400">Duration: </div>72 minutes
-                </div>
+            <div class="flex flex-col justify-center text-center">
+                @foreach ($album->tracks as $track)
+                    <div class="border-b-2">
+                        @if ($track->feat_performers()->count() > 0)
+                            @if ($track->feat_performers()->count() == 1)
+                                {{ $track->position }}. {{ $track->title }} (Feat. {{ $track->feat_performers()->first() }}) ({{ $track->duration }})
+                            @else
+                                {{ $track->position }}. {{ $track->title }} (Feat.
+                                @foreach ($track->feat_performers() as $performer )
+                                    @if ($loop->last)
+                                        {{ $performer }})
+                                    @else
+                                        {{ $performer }} &
+                                    @endif
+                                @endforeach
+                                 ({{ $track->duration }})
+                            @endif
+                        @else
+                            {{ $track->position }}.  {{ $track->title }} ({{ $track->duration }})
+                        @endif
+                    </div>
+                @endforeach
+            </div>
+            <div class="flex text-sm space-x-2 mb-3">
+                    <div class="font-semibold text-gray-400">Duration</div><p>&nbsp;72 minutes</p>
+            </div>
         </div>
     </div>
-    <div class="album-comments-container flex flex-col w-8/12 relative space-y-6 ml-20 pt-4 my-8 mt-1">
-      <div class="album-comment-container relative bg-white rounded-xl flex mt-4  border-2 border-blue-600 ">
+    <div class="album-comments-container flex flex-col w-8/12 relative space-y-6 ml-20 pt-2 mt-3 px-4">
+      <div class="album-comment-container relative bg-white rounded-xl flex border-2 border-blue-600 ">
         <div class="flex flex-1 px-4 py-6">
             <div class="flex-none">
                 <a href="#">

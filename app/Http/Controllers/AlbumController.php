@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
+use App\Models\Artist;
 use App\Http\Requests\StoreAlbumRequest;
 use App\Http\Requests\UpdateAlbumRequest;
 
@@ -15,7 +16,9 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        return view('albums.index');
+        return view('albums.index',[
+            'artists' => Artist::orderBy('name', 'asc')->get(),
+        ]);
     }
 
     /**
@@ -48,7 +51,8 @@ class AlbumController extends Controller
     public function show(Album $album)
     {
         return view('albums.show', [
-            'album' => $album,
+            'album' => Album::with('user', 'tracks', 'tracks.performers', 'tracks.performers.artist')->find($album->id),
+            'artists' => Artist::orderBy('name', 'asc')->get(),
             'backUrl' => url()->previous() !== url()->full()
                 ? url()->previous()
                 : route('albums.index')
