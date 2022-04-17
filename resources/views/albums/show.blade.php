@@ -11,6 +11,8 @@
         </a>
     </div>
 
+    <x-notification-success />
     <livewire:album-show :album='$album'/>
+    <livewire:album-edit :key="'album-edit-'.$album->id" :album='$album'/>
 
 @endsection
