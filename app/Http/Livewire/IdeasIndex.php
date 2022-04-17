@@ -122,8 +122,7 @@ class IdeasIndex extends Component
                 })
                 ->when(strlen($this->search) >= 3, function ($query) { // Search Filter
                     $query->where('ideas.title', 'like','%' . $this->search . '%');
-                })
-                ->simplePaginate(10),
+                })->distinct()->paginate(10),
         'categories' => IdeaCategory::all(),
         ]);
     }

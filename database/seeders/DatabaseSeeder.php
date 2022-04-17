@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
                 $gif->tags()->attach(rand(1, 6),);
             }
 
-            Album::factory(50)->create();
+            Album::factory(100)->create();
             Artist::factory(50)->create();
             foreach (Album::all() as $album) {
                 Track::factory(rand(5, 24))->existing()->create(['album_id' => $album->id]);

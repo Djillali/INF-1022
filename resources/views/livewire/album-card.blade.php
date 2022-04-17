@@ -55,9 +55,9 @@
                 </div>
                 <div class="flex items-center text-xs space-x-2 mb-1 line-clamp-2">
                     <div><span class="font-semibold text-gray-400">Main Performers</span>
-                        @foreach ($album->main_performers() as $performer)
-                            <span>{{$performer}}</span>
-                            @if( $album->main_performers()->last() !== $performer)
+                        @foreach ($album->main_performers() as $artist)
+                            <span>{{$artist->name}}</span>
+                            @if( $album->main_performers()->last() !== $artist)
                                 <span class="text-gray-400">&bull;</span>
                             @endif
                         @endforeach
@@ -65,9 +65,9 @@
                 </div>
                 <div class="flex  items-center text-xs space-x-2 mb-1 line-clamp-2">
                     <div><span class="font-semibold text-gray-400">Featuring</span>
-                        @foreach ($album->feat_performers() as $performer)
-                                <span>{{$performer}}</span>
-                            @if( $album->feat_performers()->last() !== $performer)
+                        @foreach ($album->feat_performers() as $artist)
+                            <span>{{$artist->name}}</span>
+                            @if( $album->feat_performers()->last() !== $artist)
                                 <span class="text-gray-400">&bull;</span>
                             @endif
                         @endforeach

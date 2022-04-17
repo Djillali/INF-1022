@@ -39,18 +39,18 @@
                 </div>
                 <div class="flex flex-wrap justify-center text-sm space-x-2 mb-3">
                     <p class="font-semibold text-gray-400">Main Performer</p>
-                    @foreach ($album->main_performers() as $performer)
-                        <p>{{$performer}}</p>
-                        @if( $album->main_performers()->last() !== $performer)
+                    @foreach ($album->main_performers() as $artist)
+                        <a href="{{ url('/') }}/albums?artist={{ $artist->slug }}&order=new&genre=all&user=all">{{ $artist->name }}</a>
+                        @if( $album->main_performers()->last() !== $artist)
                            <p class="text-gray-400">&bull;</p>
                         @endif
                     @endforeach
                 </div>
                 <div class="flex flex-wrap justify-center text-sm space-x-2 mb-3">
                     <p class="font-semibold text-gray-400">Featuring</p>
-                    @foreach ($album->feat_performers() as $performer)
-                        <p>{{$performer}}</p>
-                        @if( $album->feat_performers()->last() !== $performer)
+                    @foreach ($album->feat_performers() as $artist)
+                        <a href="{{ url('/') }}/albums?artist={{ $artist->slug }}&order=new&genre=all&user=all">{{ $artist->name }}</a>
+                        @if( $album->feat_performers()->last() !== $artist)
                            <p class="text-gray-400">&bull;</p>
                         @endif
                     @endforeach
@@ -113,14 +113,14 @@
                     <div class="border-b-2">
                         @if ($track->feat_performers()->count() > 0)
                             @if ($track->feat_performers()->count() == 1)
-                                {{ $track->position }}. {{ $track->title }} (Feat. {{ $track->feat_performers()->first() }}) ({{ $track->duration }})
+                                {{ $track->position }}. {{ $track->title }} (Feat. {{ $track->feat_performers()->first()->name }}) ({{ $track->duration }})
                             @else
                                 {{ $track->position }}. {{ $track->title }} (Feat.
-                                @foreach ($track->feat_performers() as $performer )
+                                @foreach ($track->feat_performers() as $artist )
                                     @if ($loop->last)
-                                        {{ $performer }})
+                                        {{ $artist->name }})
                                     @else
-                                        {{ $performer }} &
+                                        {{ $artist->name }} &
                                     @endif
                                 @endforeach
                                  ({{ $track->duration }})

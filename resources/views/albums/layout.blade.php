@@ -8,7 +8,7 @@
                     <h3 class="font-semibold text-base">Artists:</h3>
                     @foreach ($artists as $artist)
                     <div class="hover:border-blue-500 border-b-2 border-gray-500 hover:bg-indigo-50 hover:text-blue-900 hover:font-bold text-xs">
-                        <a href="{{ $artist->slug }}">{{ $artist->name }}</a>
+                        <a href="{{ url('/') }}/albums?artist={{ $artist->slug }}&order=new&genre=all&user=all">{{ $artist->name }}</a>
                     </div>
                     @endforeach
                 </div>

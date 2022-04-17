@@ -24,6 +24,14 @@ class GifsIndex extends Component
         'order',
     ];
 
+    public function mount()
+    {
+        $this->genre = request()->genre ?? 'all';
+        $this->order = request()->order ?? 'new';
+        $this->user = request()->user ?? 'all';
+        $this->search = request()->search;
+    }
+
     public function tagChange($_tag_id)
     {
         $this->tag_id = $_tag_id;

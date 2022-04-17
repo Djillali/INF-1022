@@ -25,10 +25,12 @@ class Track extends Model
 
         foreach ($this->performers as $performer) {
             if ($performer->type === 'Main') {
-                $main_performers->add($performer->artist->name);
+                if(! $main_performers->contains($performer->artist)){
+                    $main_performers->add($performer->artist);
+                }
             }
         }
-        return $main_performers->unique();
+        return $main_performers;
     }
 
     public function feat_performers()
@@ -37,10 +39,12 @@ class Track extends Model
 
         foreach ($this->performers as $performer) {
             if ($performer->type === 'Feat') {
-                $feat_performers->add($performer->artist->name);
+                if (!$feat_performers->contains($performer->artist)) {
+                    $feat_performers->add($performer->artist);
+                }
             }
         }
 
-        return $feat_performers->unique();
+        return $feat_performers;
     }
 }
