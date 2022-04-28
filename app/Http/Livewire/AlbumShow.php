@@ -8,6 +8,11 @@ class AlbumShow extends Component
 {
 
     public $album;
+    public $title;
+
+    protected $listeners = [
+        'tracklistWasUpdated' => '$refresh',
+    ];
 
     public function render()
     {

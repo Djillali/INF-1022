@@ -86,7 +86,9 @@ class DatabaseSeeder extends Seeder
             Album::factory(100)->create();
             Artist::factory(50)->create();
             foreach (Album::all() as $album) {
-                Track::factory(rand(5, 24))->existing()->create(['album_id' => $album->id]);
+                $tracks = Track::factory(rand(2, 24))->existing()->create(['album_id' => $album->id]);
+                $album->tracks()->attach($tracks);
+                $album->save();
             }
 
             Genre::factory()->create(['name' => 'Reggae']);

@@ -52,6 +52,10 @@ class AlbumsIndex extends Component
         $this->resetPage();
     }
 
+    protected $listeners = [
+        'albumWasCreated' => '$refresh',
+    ];
+
     public function render()
     {
         return view('livewire.albums-index',[

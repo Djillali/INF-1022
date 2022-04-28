@@ -8,7 +8,7 @@
             </div>
             <div>
                 <div class="flex flex-col justify-center text-center">
-                    @foreach ($album->tracks as $track)
+                    @foreach ($album->tracks->sortBy('position') as $track)
                         <div class="border-b-2">
                             @if ($track->feat_performers()->count() > 0)
                                 @if ($track->feat_performers()->count() == 1)

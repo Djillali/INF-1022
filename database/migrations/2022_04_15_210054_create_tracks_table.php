@@ -22,6 +22,13 @@ return new class extends Migration
             $table->string('duration')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('album_track', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('album_id')->constrained();
+            $table->foreignId('track_id')->constrained();
+            $table->timestamps();
+        });
     }
 
     /**

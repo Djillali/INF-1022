@@ -51,6 +51,16 @@
                 <div class="text-gray-400 text-center font-bold mt-6">No albums were found...</div>
             </div>
         @endforelse
+        <div x-data="{ isOpen: false }">
+                     <a
+                                    href="#"
+                                    @click="$dispatch('custom-show-add-modal')"
+                                    class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3"
+                                >
+                                Add ALbum
+                                </a>
+        </div>
+
     </div> <!-- end ideas-container -->
     <div class="my-8">
         {{ $albums->appends(request()->query())->links() }}
